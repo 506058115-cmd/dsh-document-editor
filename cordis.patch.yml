@@ -1,0 +1,37 @@
+# ==============================================================================
+# dsh-document-editor — MCP server injection entry  (已验证可用)
+# ==============================================================================
+# 把下面这个 YAML 数组项追加到 DSH profile 的 cordis.patch.yml，例如：
+#   Windows : C:\Users\<你>\.dsh\profiles\web\cordis.patch.yml
+#   macOS/Linux : ~/.dsh/profiles/web/cordis.patch.yml
+#
+# 装完后重启 DSH web profile 才会生效。
+#
+# 前置条件：
+#   Python 3.10 或更高版本。
+#   pip install mcp python-docx openpyxl python-pptx pypdf reportlab
+#
+# 两个务必注意的点：
+#   1. name 必须是官方 '@deepseek-ai/dsh-mcp-client'（承载 MCP 客户端），
+#      写成本插件自己的名字会找不到可加载的模块。
+#   2. command 必须是 pip 所在的那个 Python 解释器的**绝对路径**。
+#      不要用 `uv run` —— uv 会建隔离环境，看不到这些依赖，会报
+#      ModuleNotFoundError: No module named 'mcp'。
+#      也不要只写 `python` —— DSH 拉起进程时的 PATH 未必与终端一致。
+#
+# Replace the two path placeholders below with the absolute Python and plugin paths.
+# To test the installed command, set DOCUMENT_EDITOR_PYTHON,
+# DOCUMENT_EDITOR_SERVER, and DOCUMENT_EDITOR_CWD before running scripts/test_config.py.
+# ------------------------------------------------------------------------------
+- insert:
+    - id: mcp-document-editor
+      name: '@deepseek-ai/dsh-mcp-client'
+      config:
+        serverName: document-editor
+        transport: stdio
+        command: "<absolute path to Python>"
+        args:
+          - "<absolute path to dsh-document-editor>/src/server.py"
+        reconnect:
+          enabled: true
+# ------------------------------------------------------------------------------

@@ -1,0 +1,27 @@
+{
+  "name": "dsh-document-editor",
+  "version": "0.2.0",
+  "description": "DSH plugin: MCP server for creating, reading, editing and verifying PDF, Word, Excel and PowerPoint documents.",
+  "private": true,
+  "keywords": [
+    "dsh-plugin",
+    "mcp",
+    "document-editor",
+    "pdf",
+    "word",
+    "excel",
+    "powerpoint"
+  ],
+  "license": "MIT",
+  "engines": {
+    "python": ">=3.10"
+  },
+  "files": [
+    "src",
+    "scripts",
+    "cordis.patch.yml",
+    "dsh-plugin.json",
+    "README.md",
+    "LICENSE"
+  ]
+}

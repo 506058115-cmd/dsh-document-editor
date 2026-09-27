@@ -1,0 +1,18 @@
+# dsh-document-editor: Python dependencies
+# Install with: pip install -r requirements.txt
+#
+# `mcp` is required and must be the 2.x SDK — the server is written against the
+# v2 API (`from mcp.server.mcpserver import MCPServer`, `run_stdio_async()`).
+# Under mcp 1.x those names do not exist and the server will not start.
+#
+# The four document libraries are individually optional: if one is missing, the
+# matching tools return an `error` field telling the user what to install,
+# while the remaining formats keep working.
+
+mcp>=2.0.0            # MCP (Model Context Protocol) SDK, v2 API
+
+python-docx>=0.8.11   # Microsoft Word (.docx) create/read/modify
+openpyxl>=3.1.0       # Microsoft Excel (.xlsx) create/read/modify
+python-pptx>=0.6.23   # Microsoft PowerPoint (.pptx) create/read/modify
+pypdf>=4.0.0          # PDF: read existing files and append pages
+reportlab>=4.0.0      # PDF: render text onto new pages

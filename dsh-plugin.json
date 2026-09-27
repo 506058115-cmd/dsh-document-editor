@@ -1,0 +1,45 @@
+{
+  "name": "dsh-document-editor",
+  "version": "0.2.0",
+  "description": "MCP server (stdio) for creating, reading, editing and verifying PDF, Word, Excel and PowerPoint documents.",
+  "license": "MIT",
+  "category": "document-tools",
+  "runtime": {
+    "language": "python",
+    "minVersion": "3.10"
+  },
+  "pythonDependencies": [
+    "mcp>=2.0.0",
+    "python-docx>=0.8.11",
+    "openpyxl>=3.1.0",
+    "python-pptx>=0.6.23",
+    "pypdf>=4.0.0",
+    "reportlab>=4.0.0"
+  ],
+  "install": {
+    "pip": "pip install mcp python-docx openpyxl python-pptx pypdf reportlab",
+    "profilePatch": "cordis.patch.yml"
+  },
+  "mcpServer": {
+    "transport": "stdio",
+    "serverName": "document-editor",
+    "entry": "src/server.py",
+    "loadsVia": "@deepseek-ai/dsh-mcp-client",
+    "note": "command 必须写 pip 所在 Python 解释器的绝对路径；勿用 uv run（隔离环境看不到已装依赖）。"
+  },
+  "tools": [
+    "create_pdf",
+    "edit_pdf",
+    "read_pdf",
+    "verify_document",
+    "create_word_document",
+    "read_word_document",
+    "modify_word_document",
+    "create_excel_workbook",
+    "read_excel_workbook",
+    "modify_excel_worksheet",
+    "create_pptx_presentation",
+    "read_pptx_presentation",
+    "modify_pptx_presentation"
+  ]
+}
